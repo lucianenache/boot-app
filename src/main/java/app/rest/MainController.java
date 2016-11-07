@@ -2,7 +2,6 @@ package app.rest;
 
 import app.services.MainService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +14,17 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Component
-@Path("/v1")
+@Path("/application")
 @Secured("ROLE_USER")
 public class MainController {
 
     private static final Logger LOG = Logger.getLogger(MainController.class);
 
-    @Autowired MainService mainService;
+    private final MainService mainService;
+
+    public MainController(MainService mainService) {
+        this.mainService = mainService;
+    }
 
     @GET
     @Produces("application/json")

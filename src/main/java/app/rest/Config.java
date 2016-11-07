@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.ApplicationPath;
 
 @Component
-@ApplicationPath("/")
+/*
+* If using jersey in combination with Spring Boot, the ApplicationPath should not be  /
+* in order for the Spring Security to work.
+* */
+@ApplicationPath("/v1")
 public class Config extends ResourceConfig {
     public Config() {
         register(MainController.class);

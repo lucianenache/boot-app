@@ -1,17 +1,16 @@
 package app;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @SpringBootApplication
-@EnableAsync
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class BootApplication {
+public class BootApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SecurityContextHolder.getContext()
@@ -19,8 +18,8 @@ public class BootApplication {
                         "12345",
                         AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER")));
 
-        SpringApplication.run(BootApplication.class);
+        new BootApplication()
+                .configure(new SpringApplicationBuilder(BootApplication.class))
+                .run(args);
     }
-
-
 }

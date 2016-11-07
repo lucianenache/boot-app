@@ -16,12 +16,11 @@
     </Appenders>
     <Loggers>
         <AsyncLogger name="app.Application" level="debug"/>
-        <AsyncLogger name="io.undertow" level="info"/>
-        <AsyncLogger name="org.springframework" level="info"/>
+        <AsyncLogger name="io.undertow" level="debug"/>
+        <AsyncLogger name="org.springframework" level="debug"/>
         <AsyncLogger name="org.hibernate" level="info"/>
         <AsyncLogger name="org.apache.http" level="info"/>
         <AsyncLogger name="org.xnio" level="info"/>
-        <AsyncLogger name="lego.Application" level="debug"/>
         <AsyncRoot level="debug">
             <AppenderRef ref="STDOUT"/>
         </AsyncRoot>
